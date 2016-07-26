@@ -1,12 +1,12 @@
 <% include header %>
     <form>
-      <textarea id="editor1" name="editor1" rows="10" cols="80"></textarea>
+      <textarea name="editor1" rows="10" cols="80"></textarea>
       <input type="submit" value="Save">
     </form>
   </body>
   <script>
     $( document ).ready( function() {
-      $( 'textarea#editor1' ).ckeditor();
+      CKEDITOR.replace( 'editor1' );
     });
   </script>
 </html>
