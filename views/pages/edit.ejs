@@ -4,6 +4,12 @@
     <title>KnouWIKI</title>
   </head>
   <body>
-
+    <form>
+      <textarea class="editor" rows="8" cols="40"></textarea>
+      <input type="submit" value="Save">
+    </form>
   </body>
+  <script>
+    $( 'textarea.editor' ).ckeditor();
+  </script>
 </html>
