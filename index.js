@@ -11,6 +11,11 @@ app.use(express.static('./public'));
 
 mainController(app);
 
+//listen to port
+app.listen(3000);
+console.log('You are listening to port 3000');
+
+
 // app.use(express.static(__dirname + '/public'));
 //
 // // views is directory for all template files
