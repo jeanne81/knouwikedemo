@@ -1,0 +1,16 @@
+<% include header %>
+
+    <form id="contentsform">
+      <!-- <input type="text" name="item" placeholder="Add new item..." required />
+      <button type="submit">Add Items</button> -->
+      <textarea id="editor1" name="item" rows="10" cols="80"></textarea>
+      <button type="submit">save</button>
+    </form>
+      <script src="/assets/wiki.js"></script>﻿
+      <script>
+        $( document ).ready( function() {
+          CKEDITOR.replace(editor1);
+        });
+      </script>
+  </body>
+</html>

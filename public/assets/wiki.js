@@ -1,14 +1,11 @@
 $(document).ready(function(){
-
-  $('form').on('submit', function(){
-
-      var item = $('form input');
-      var todo = {item: item.val()};
-
+  $('#contentsform').on('submit', function(){
+      var item = CKEDITOR.instances['editor1'].getData();
+      var wikidata = {item: item};
       $.ajax({
         type: 'POST',
-        url: '/todo',
-        data: todo,
+        url: '/editer',
+        data: wikidata,
         success: function(data){
           //do something with the data via front-end framework
           location.reload();
