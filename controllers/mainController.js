@@ -15,6 +15,10 @@ var wikidata = mongoose.model('wikidata', wikidataSchema);
 var urlendodedParser = bodyParser.urlencoded({extended: false});
 
 module.exports = function(app){
+  
+  app.get('/', function(request, response) {
+  response.render('pages/index');
+  });
 
   app.get('/result', function(req, res){
     //get data from mongodb and pass it to the view
