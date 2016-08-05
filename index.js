@@ -1,7 +1,8 @@
 var express = require('express');
 var mainController = require('./controllers/mainController');
-
 var app = express();
+
+app.set('port', (process.env.PORT || 5000));
 
 //set up template engine
 app.set('view engine', 'ejs');
