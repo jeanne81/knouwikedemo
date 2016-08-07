@@ -1,8 +1,9 @@
 <% include header %>
 
-    <form id="contentsform">
+    <form id="contentsform" method="post">
       <!-- <input type="text" name="item" placeholder="Add new item..." required />
       <button type="submit">Add Items</button> -->
+      <input type="hidden" name="title" id="title" value="title!">
       <textarea id="editor1" name="item" rows="10" cols="80"></textarea>
       <button type="submit">save</button>
     </form>

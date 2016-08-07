@@ -1,7 +1,9 @@
 $(document).ready(function(){
   $('#contentsform').on('submit', function(){
+    alert('sdfsdf');
       var item = CKEDITOR.instances['editor1'].getData();
-      var wikidata = {item: item};
+      var title = $('#title').val();
+      var wikidata = {title: title, item: item};
       $.ajax({
         type: 'POST',
         url: '/editer',
@@ -14,6 +16,21 @@ $(document).ready(function(){
 
       return false;
 
+  });
+
+  $('#headerSearch').on('submit', function(){
+    alert('sd33fsdf');
+    var inputTitle = $('#inputTitle').val();
+    var writerIP = '123123';
+    var result = {title: inputTitle, writer: writerIP};
+    $.ajax({
+      type: 'POST',
+      url: '/header',
+      data: result,
+      success: function(data){
+        console.log('succecss headerSearch');
+      }
+    })
   });
 
   $('li').on('click', function(){

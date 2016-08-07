@@ -11,7 +11,7 @@
   <script src="//cdn.ckeditor.com/4.5.10/standard/ckeditor.js"></script>
   <script src="/ckedit../../ckeditor.js"></script>
   <script src="/ckeditor/adapters/jquery.js"></script>
-
+	<script src="/assets/wiki.js"></script>﻿
 	<link rel="stylesheet" href="/stylesheets/submain.css" type="text/css">
 	<!-- <link rel="stylesheet" type="text/css" href="resources/common.css"> -->
 </head>
@@ -29,7 +29,7 @@
 		</div>
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="/edit">편집</a></li>
+				<li><a href="/editer">편집</a></li>
 				<li><a href="/result">결과</a></li>
 				<li><a href="#menu3">메뉴3</a></li>
 				<li><a href="#menu4">메뉴4</a></li>
@@ -43,8 +43,8 @@
 <div class="jumbotron text-center">
 	<h1>Knou Wiki</h1>
 	<p>Search Anything</p>
-	<form class="form-inline">
-		<input type="text" class="form-control" style="margin-bottom: 10px;" size="50" placeholder="search"/>
-		<button type="button" class="btn btn-info" style="margin-bottom: 10px;">Go!</button>
+	<form class="form-inline" id="headerSearch" method="post">
+		<input type="text" id="inputTitle" class="form-control" style="margin-bottom: 10px;" size="50" placeholder="search"/>
+		<button type="submit" class="btn btn-info" style="margin-bottom: 10px;">Go!</button>
 	</form>
 </div>
