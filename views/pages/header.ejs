@@ -43,8 +43,8 @@
 <div class="jumbotron text-center">
 	<h1>Knou Wiki</h1>
 	<p>Search Anything</p>
-	<form class="form-inline" id="headerSearch" method="post">
-		<input type="text" id="inputTitle" class="form-control" style="margin-bottom: 10px;" size="50" placeholder="search"/>
+	<form class="form-inline" id="headerSearch" action="/result" method="POST">
+		<input type="text" id="inputTitle" name="inputTitle" class="form-control" style="margin-bottom: 10px;" size="50" placeholder="search"/>
 		<button type="submit" class="btn btn-info" style="margin-bottom: 10px;">Go!</button>
 	</form>
 </div>

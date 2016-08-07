@@ -15,21 +15,45 @@ var wikidataSchema = new mongoose.Schema({
 var wikidata = mongoose.model('wikidata', wikidataSchema);
 
 var urlendodedParser = bodyParser.urlencoded({extended: false});
+
+var title;
 module.exports = function(app){
-  
-  app.get('/', function(request, response) {
-  response.render('pages/index');
-  });
 
-  app.post('/result', function(req, res){
+  // app.get('/result', function(req, res){
+  //   //get data from mongodb and pass it to the view
+  //   wikidata.find({title: 'title'}, function(err, data){
+  //     if (err) throw err;
+  //     res.render('pages/result', {todos: data});
+  //   });
+  // });
+
+  app.post('/result', urlendodedParser, function(req, res){
+    title = req.body.inputTitle;
+    console.log(title);
     //get data from mongodb and pass it to the view
-    res.render('pages/result');
-    wikidata.find({title: 'title'}, function(err, data){
-      if (err) throw err;
-      res.render('pages/result', {todos: data});
+    wikidata.find({title: title}, function(err, data){
+      if (data=='') {
+        res.render('pages/editer', {title: title, content: '결과가 새로운 문서를 작성 해 주세요 :)'});
+      } else if (err) {
+        throw err;
+      } else {
+        console.log(data);
+        console.log('WTF');
+        res.render('pages/result', {todos: data});
+      }
     });
-
   });
+
+  // app.get('/result', function(req, res){
+  //   title = req.body.inputTitle;
+  //   console.log(title);
+  //   //get data from mongodb and pass it to the view
+  //   wikidata.find({title: title}, function(err, data){
+  //     if (err) throw err;
+  //       console.log(data);
+  //       res.render('pages/result', {todos: data});
+  //     });
+  //   });
 
   app.get('/editer', function(req, res){
     res.render('pages/editer');
@@ -46,6 +70,11 @@ module.exports = function(app){
       res.json(data);
       console.log('saved');
     });
+    wikidata.find({title: title}, function(err, data){
+      console.log(title);
+      if (err) throw err;
+        console.log(data);
+        res.render('pages/result', {todos: data});
+      });
   });
-
 }
