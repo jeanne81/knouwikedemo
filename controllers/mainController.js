@@ -9,7 +9,8 @@ mongoose.connect('mongodb://hellosam:test@ds139425.mlab.com:39425/knouwiki');
 var wikidataSchema = new mongoose.Schema({
   // writerIP: String,
   title: String,
-  item: String
+  item: String,
+  date: String
 });
 
 var wikidata = mongoose.model('wikidata', wikidataSchema);
@@ -60,6 +61,8 @@ module.exports = function(app){
 
   app.get('/', function(req, res){
     res.render('pages/index');
+    var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+    console.log(ip);
   });
 
   app.post('/editer', urlendodedParser, function(req, res){

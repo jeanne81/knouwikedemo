@@ -1,8 +1,20 @@
+// var ipAddr = req.headers["x-forwarded-for"];
+// if (ipAddr){
+//   var list = ipAddr.split(",");
+//   ipAddr = list[list.length-1];
+// } else {
+//   ipAddr = req.connection.remoteAddress;
+// }
+var dt = new Date();
+
 $(document).ready(function(){
   $('#contentsform').on('submit', function(){
       var item = CKEDITOR.instances['editor1'].getData();
       var title = $('#title').val();
-      var wikidata = {title: title, item: item};
+      var date = dt;
+
+      var wikidata = {title: title, item: item, date: date};
+
       $.ajax({
         type: 'POST',
         url: '/editer',
@@ -10,7 +22,8 @@ $(document).ready(function(){
         success: function(data){
           //do something with the data via front-end framework
           // location.reload();
-          alert('test');
+          // alert(ipAddr);
+          alert(dt);
           window.location.href = '/result/' + title;
         }
       });
