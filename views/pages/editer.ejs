@@ -1,12 +1,11 @@
 <% include header %>
-<h4><%= title %></h4>
+<h2><%= title %></h2>
 <h4><%= content %></h4>
     <form id="contentsform" method="post">
       <input type="hidden" name="title" id="title" value="<%= title %>">
       <textarea id="editor1" name="item" rows="10" cols="80"></textarea>
       <button type="submit">save</button>
     </form>
-      <script src="/assets/wiki.js"></script>﻿
       <script>
         $( document ).ready( function() {
           CKEDITOR.replace(editor1);

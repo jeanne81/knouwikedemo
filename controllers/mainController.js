@@ -33,27 +33,26 @@ module.exports = function(app){
     //get data from mongodb and pass it to the view
     wikidata.find({title: title}, function(err, data){
       if (data=='') {
-        res.render('pages/editer', {title: title, content: '결과가 새로운 문서를 작성 해 주세요 :)'});
+        res.render('pages/editer', {title: title, content: '결과가 없습니다! 새로운 문서를 작성 해 주세요 :)'});
       } else if (err) {
         throw err;
       } else {
         console.log(data);
-        console.log('WTF');
         res.render('pages/result', {todos: data});
       }
     });
   });
 
-  // app.get('/result', function(req, res){
-  //   title = req.body.inputTitle;
-  //   console.log(title);
-  //   //get data from mongodb and pass it to the view
-  //   wikidata.find({title: title}, function(err, data){
-  //     if (err) throw err;
-  //       console.log(data);
-  //       res.render('pages/result', {todos: data});
-  //     });
-  //   });
+  app.get('/result/:title', function(req, res){
+    title = req.params.title;
+    console.log(title);
+    //get data from mongodb and pass it to the view
+    wikidata.find({title: title}, function(err, data){
+      if (err) throw err;
+        console.log(data);
+        res.render('pages/result', {title: title, todos: data});
+      });
+    });
 
   app.get('/editer', function(req, res){
     res.render('pages/editer');
@@ -70,11 +69,12 @@ module.exports = function(app){
       res.json(data);
       console.log('saved');
     });
-    wikidata.find({title: title}, function(err, data){
-      console.log(title);
-      if (err) throw err;
-        console.log(data);
-        res.render('pages/result', {todos: data});
-      });
+    // wikidata.find({title: title}, function(err, data){
+    //   console.log(title);
+    //   if (err) throw err;
+    //     console.log(data);
+
+    //     res.render('pages/result', {todos: data});
+      // });
   });
 }

@@ -10,6 +10,8 @@ $(document).ready(function(){
         success: function(data){
           //do something with the data via front-end framework
           // location.reload();
+          alert('test');
+          window.location.href = '/result/' + title;
         }
       });
 
@@ -18,16 +20,16 @@ $(document).ready(function(){
   });
 
   // $('#headerSearch').on('submit', function(){
-  //   alert('sd33fsdf');
+  //   alert('test2');
   //   var inputTitle = $('#inputTitle').val();
   //   var writerIP = '123123';
   //   var result = {title: inputTitle, writer: writerIP};
   //   $.ajax({
   //     type: 'POST',
-  //     url: '/header',
+  //     url: '/result',
   //     data: result,
   //     success: function(data){
-  //       console.log('succecss headerSearch');
+  //       alert('test');
   //     }
   //   })
   // });
