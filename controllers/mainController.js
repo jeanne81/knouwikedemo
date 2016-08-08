@@ -38,7 +38,7 @@ module.exports = function(app){
         throw err;
       } else {
         console.log(data);
-        res.render('pages/result', {todos: data});
+        res.render('pages/result', {title:title, todos: data});
       }
     });
   });
