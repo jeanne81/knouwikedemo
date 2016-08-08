@@ -13,11 +13,11 @@ app.use(express.static('./public'));
 mainController(app);
 
 //listen to port
-app.listen(3000);
-console.log('You are listening to port 3000');
-// app.listen(app.get('port'), function() {
-//   console.log('Node app is running on port', app.get('port'));
-// });
+// app.listen(3000);
+// console.log('You are listening to port 3000');
+app.listen(app.get('port'), function() {
+  console.log('Node app is running on port', app.get('port'));
+});
 
 
 // app.use(express.static(__dirname + '/public'));
