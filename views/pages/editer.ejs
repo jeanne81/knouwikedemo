@@ -1,15 +1,21 @@
 <% include header %>
-<h2><%= title %></h2>
-<h4><%= content %></h4>
-    <form id="contentsform" method="post">
-      <input type="hidden" name="title" id="title" value="<%= title %>">
-      <textarea id="editor1" name="item" rows="10" cols="80"></textarea>
-      <button type="submit">save</button>
-    </form>
-      <script>
-        $( document ).ready( function() {
-          CKEDITOR.replace(editor1);
-        });
-      </script>
+<div class="row container-fluid">
+	<div class="col-sm-12">
+        <h2>"<%= title %>"</h2>
+        <div class="alert alert-info" role="alert">
+            <h4><%= content %></h4>
+        </div>        
+        <form id="contentsform" method="post">
+          <input type="hidden" name="title" id="title" value="<%= title %>">
+          <textarea id="editor1" name="item" rows="10" cols="80"></textarea>
+          <button type="submit">save</button>
+        </form>
+	</div>
+</div>            
+<script>
+$( document ).ready( function() {
+  CKEDITOR.replace(editor1);
+});
+</script>
   </body>
 </html>
