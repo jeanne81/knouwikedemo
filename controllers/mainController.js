@@ -34,7 +34,7 @@ module.exports = function(app){
     //get data from mongodb and pass it to the view
     wikidata.find({title: title}, function(err, data){
       if (data=='') {
-        res.render('pages/editer', {title: title, content: '<div class=\"alert alert-info\" role=\"alert\">결과가 없습니다! 새로운 문서를 작성 해 주세요 :)</div>'});
+        res.render('pages/editer', {title: title, content: '결과가 없습니다! 새로운 문서를 작성 해 주세요 :)'});
       } else if (err) {
         throw err;
       } else {
