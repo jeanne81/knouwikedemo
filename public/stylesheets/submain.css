@@ -94,11 +94,13 @@ footer .glyphicon{
 .carousel-indicators li.active{
 	background-color: #0088CF;
 }
+.item h2{
+	margin-top: 70px;
+}
 .item h4{
-	font-size: 19px;
-	font-weight: 400;
-	font-style: italic;
-	margin: 70px 0;
+	margin-top: 40px;
+	margin-bottom: 70px;
+	
 }
 .item span{
 	font-style: normal;
