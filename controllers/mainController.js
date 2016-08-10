@@ -27,31 +27,15 @@ module.exports = function(app){
   //     res.render('pages/result', {todos: data});
   //   });
   // });
-  app.post('/edit_document', urlendodedParser, function(req, res){
-    title = req.body.editdoctitle;
-    item = req.body.item;
-    console.log(title);
-    wikidata.find({title: title}, function(err, data){
-      if (err) throw err;
-        res.render('pages/editer', {todos: data, content: '문서를 편집 해 주세요 :)'});
-      });
-
-  });
 
   app.get('/result/:title', function(req, res){
     title = req.params.title;
-    console.log(title);
     //get data from mongodb and pass it to the view
     wikidata.find({title: title}, function(err, data){
       if (err) throw err;
-        console.log(data);
         res.render('pages/result', {title: title, todos: data});
       });
     });
-
-  app.get('/editer', function(req, res){
-    res.render('pages/editer');
-  });
 
   app.get('/', function(req, res){
     res.render('pages/index');
@@ -66,14 +50,31 @@ module.exports = function(app){
       res.json(data);
       console.log('saved');
     });
-    // wikidata.find({title: title}, function(err, data){
-    //   console.log(title);
-    //   if (err) throw err;
-    //     console.log(data);
-
-    //     res.render('pages/result', {todos: data});
-      // });
   });
+
+  app.post('/edit_document', urlendodedParser, function(req, res){
+    var togle = 0;
+    title = req.body.editdoctitle;
+    item = req.body.item;
+    wikidata.find({title: title}, function(err, data){
+      if (err) throw err;
+      if(togle == 0){
+        res.render('pages/edit_document', {title: title, todos: data, content: '문서를 편집 해 주세요'});
+        togle = 1;
+      };
+      if(togle == 1){
+        var newTodo = wikidata(req.body).save(function(err,data){
+          if(err) throw err;
+          res.json(data);
+          console.log('saved');
+          togle = 0;
+        });
+      };
+
+      });
+
+  });
+
 
   app.post('/result', urlendodedParser, function(req, res){
     title = req.body.inputTitle;
@@ -81,11 +82,10 @@ module.exports = function(app){
     //get data from mongodb and pass it to the view
     wikidata.find({title: title}, function(err, data){
       if (data=='') {
-        res.render('pages/editer', {todos: data, content: '결과가 없습니다! 새로운 문서를 작성 해 주세요 :)'});
+        res.render('pages/editer', {title: title, todos: data, content: '결과가 없습니다! 새로운 문서를 작성 해 주세요'});
       } else if (err) {
         throw err;
       } else {
-        console.log(data);
         res.render('pages/result', {title:title, todos: data});
       }
     });

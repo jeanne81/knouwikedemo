@@ -1,25 +1,23 @@
 <% include header %>
 <div class="row container-fluid">
 	<div class="col-sm-12">
-	        <h2>"<%= title %>"</h2>
+	        <h2><%= title %></h2>
 	        <div class="alert alert-info" role="alert">
 	            <h4 style="margin-bottom: 0;"><%= content %></h4>
 	        </div>
-	        <form id="contentsform" method="post">
+	        <form id="contentsform2" method="post">
 	          <input type="hidden" name="title" id="title" value="<%= title %>">
 	          <textarea id="editor1" name="item" rows="10" cols="80"></textarea>
-	          <p class="text-center"><button type="submit" class="btn btn-primary" style="margin: 20px 0;">edit</button></p>
+	          <p class="text-center"><button type="submit" class="btn btn-primary" style="margin: 20px 0;">save</button></p>
 	        </form>
 	</div>
 </div>
 <script>
-var myVar = <%- JSON.stringify(editItem) %>;
+var myVar = <%- JSON.stringify(todos[0].item) %>;
 
 $( document ).ready( function() {
-
   CKEDITOR.replace(editor1);
-  // CKEDITOR.instances['editor1'].setData(myVar);
-  // CKEDITOR.replace(editor1);
+	CKEDITOR.instances['editor1'].setData(myVar);
 });
 </script>
   </body>

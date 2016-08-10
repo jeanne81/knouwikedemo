@@ -31,6 +31,29 @@ $(document).ready(function(){
 
   });
 
+  $('#contentsform2').on('submit', function(){
+      var item = CKEDITOR.instances['editor1'].getData();
+      var title = $('#title').val();
+      var date = dt;
+
+      var wikidata = {title: title, item: item, date: date};
+
+      $.ajax({
+        type: 'POST',
+        url: '/edit_document',
+        data: wikidata,
+        success: function(data){
+          //do something with the data via front-end framework
+          // location.reload();
+          // alert(ipAddr);
+          window.location.href = '/result/' + title;
+        }
+      });
+
+      return false;
+
+  });
+
   // $('#headerSearch').on('submit', function(){
   //   alert('test2');
   //   var inputTitle = $('#inputTitle').val();
