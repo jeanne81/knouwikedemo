@@ -27,21 +27,15 @@ module.exports = function(app){
   //     res.render('pages/result', {todos: data});
   //   });
   // });
-
-  app.post('/result', urlendodedParser, function(req, res){
-    title = req.body.inputTitle;
+  app.post('/edit_document', urlendodedParser, function(req, res){
+    title = req.body.editdoctitle;
+    item = req.body.item;
     console.log(title);
-    //get data from mongodb and pass it to the view
     wikidata.find({title: title}, function(err, data){
-      if (data=='') {
-        res.render('pages/editer', {title: title, content: '결과가 없습니다! 새로운 문서를 작성 해 주세요 :)'});
-      } else if (err) {
-        throw err;
-      } else {
-        console.log(data);
-        res.render('pages/result', {title:title, todos: data});
-      }
-    });
+      if (err) throw err;
+        res.render('pages/editer', {todos: data, content: '문서를 편집 해 주세요 :)'});
+      });
+
   });
 
   app.get('/result/:title', function(req, res){
@@ -79,5 +73,21 @@ module.exports = function(app){
 
     //     res.render('pages/result', {todos: data});
       // });
+  });
+
+  app.post('/result', urlendodedParser, function(req, res){
+    title = req.body.inputTitle;
+    console.log(title);
+    //get data from mongodb and pass it to the view
+    wikidata.find({title: title}, function(err, data){
+      if (data=='') {
+        res.render('pages/editer', {todos: data, content: '결과가 없습니다! 새로운 문서를 작성 해 주세요 :)'});
+      } else if (err) {
+        throw err;
+      } else {
+        console.log(data);
+        res.render('pages/result', {title:title, todos: data});
+      }
+    });
   });
 }

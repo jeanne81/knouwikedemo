@@ -23,7 +23,6 @@ $(document).ready(function(){
           //do something with the data via front-end framework
           // location.reload();
           // alert(ipAddr);
-          alert(dt);
           window.location.href = '/result/' + title;
         }
       });

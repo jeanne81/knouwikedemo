@@ -1,11 +1,16 @@
 <% include header %>
+<form action="edit_document" method="post">
+	<input type="hidden" name="editdoctitle" id="editdoctitle" value="<%= title %>">
+	<input type="hidden" id="editor1" name="item" rows="10" cols="80" value="<%= todos[0].item %>"></textarea>
+	<p class="text-center"><button type="submit" class="btn btn-primary" style="margin: 20px 0;">edit</button></p>
+</form>
 <div class="row container-fluid">
-	<div class="col-sm-12">  
-    		<h2>"<%= title %>"</h2>
+	<div class="col-sm-12">
+    		<h2><%- todos[0].title %></h2>
 		<%- todos[0].date %>
 		<%- todos[0].item %>
-	</div>  
-</div>    
+	</div>
+</div>
   </body>
 
 </html>
