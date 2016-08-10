@@ -100,8 +100,9 @@ footer .glyphicon{
 }
 .item h4{
 	margin-top: 40px;
+	margin-right: 50px;
 	margin-bottom: 70px;
-	
+	margin-left: 50px;
 }
 .item span{
 	font-style: normal;
