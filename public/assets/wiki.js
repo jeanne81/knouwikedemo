@@ -40,7 +40,7 @@ $(document).ready(function(){
 
       $.ajax({
         type: 'POST',
-        url: '/edit_document',
+        url: '/edit_confirm',
         data: wikidata,
         success: function(data){
           //do something with the data via front-end framework

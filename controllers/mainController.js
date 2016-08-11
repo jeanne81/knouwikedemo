@@ -18,15 +18,8 @@ var wikidata = mongoose.model('wikidata', wikidataSchema);
 var urlendodedParser = bodyParser.urlencoded({extended: false});
 
 var title;
-module.exports = function(app){
 
-  // app.get('/result', function(req, res){
-  //   //get data from mongodb and pass it to the view
-  //   wikidata.find({title: 'title'}, function(err, data){
-  //     if (err) throw err;
-  //     res.render('pages/result', {todos: data});
-  //   });
-  // });
+module.exports = function(app){
 
   app.get('/result/:title', function(req, res){
     title = req.params.title;
@@ -53,32 +46,34 @@ module.exports = function(app){
   });
 
   app.post('/edit_document', urlendodedParser, function(req, res){
-    var togle = 0;
     title = req.body.editdoctitle;
     item = req.body.item;
+
     wikidata.find({title: title}, function(err, data){
       if (err) throw err;
-      if(togle == 0){
-        res.render('pages/edit_document', {title: title, todos: data, content: '문서를 편집 해 주세요'});
-        togle = 1;
-      };
-      if(togle == 1){
-        var newTodo = wikidata(req.body).save(function(err,data){
-          if(err) throw err;
-          res.json(data);
-          console.log('saved');
-          togle = 0;
-        });
-      };
-
+      res.render('pages/edit_document', {title: title, todos: data, content: '문서를 편집 해 주세요'});
       });
+  });
 
+  app.post('/edit_confirm', urlendodedParser, function(req, res){
+    title = req.body.title;
+    item = req.body.item;
+    console.log(title);
+    console.log(item);
+    wikidata.find({title: title}).remove().exec(function(err, data){
+      if(err) throw err;
+      console.log('deleted');
+      var newTodo = wikidata(req.body).save(function(err,data){
+        if(err) throw err;
+        res.json(data);
+        console.log('saved');
+      });
+    });
   });
 
 
   app.post('/result', urlendodedParser, function(req, res){
     title = req.body.inputTitle;
-    console.log(title);
     //get data from mongodb and pass it to the view
     wikidata.find({title: title}, function(err, data){
       if (data=='') {

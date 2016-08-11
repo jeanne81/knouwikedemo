@@ -1,5 +1,5 @@
 <% include header %>
-<form action="edit_document" method="post">
+<form action="/edit_document" method="post">
 	<input type="hidden" name="editdoctitle" id="editdoctitle" value="<%= title %>">
 	<input type="hidden" id="editor1" name="item" rows="10" cols="80" value="<%= todos[0].item %>"></textarea>
 	<p class="text-center"><button type="submit" class="btn btn-primary" style="margin: 20px 0;">edit</button></p>
