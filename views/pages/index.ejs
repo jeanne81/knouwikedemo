@@ -15,7 +15,7 @@
 				<div class="item active">
 					<h2>언제 어디서든 참여하세요</h2>
 					<h4>
-					방송대위키는 시간과 장소에 구애받지 않고<br> 
+					방송대위키는 시간과 장소에 구애받지 않고<br>
 					다양한 이야기를 나눌 수 있도록 여러분을 지원합니다 .<br><br>
 					언제 어디서든 자유롭게 최신 정보를 검색, 편집해 보세요!
 					</h4>
@@ -23,7 +23,7 @@
 				<div class="item">
 					<h2>모든 것은 키워드 검색으로 시작합니다</h2>
 					<h4>
-					그동안 방송대 정보를 찾는 것이 힘드셨나요?<br> 
+					그동안 방송대 정보를 찾는 것이 힘드셨나요?<br>
 					방송대 위키에서는 키워드 검색 한 번이면 충분합니다.<br><br>
 					지금 바로 어떤 것이든 검색해보세요!
 					</h4>
@@ -46,32 +46,23 @@
 				<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
 				<span class="sr-only">Next</span>
 			</a>
-		</div>	
-	</div>	
+		</div>
+	</div>
 	<div class="col-sm-3">
 		<div class="panel panel-default">
 			<div class="panel-heading"><h3>최근변경</h3></div>
 			<div class="list-group">
-				<a href="#" class="list-group-item">
-					<span class="badge">23:33</span>
-					정재화 교수
+				<%
+				var count = todos.length;
+				if(todos.length > 11){
+					count = 10;
+				}
+				for(var i=0; i < count; i++){ %>
+				<a href="/result/<%= todos[i].title %>" class="list-group-item">
+					<span class="badge"><%= todos[i].displayTime %></span>
+					<%= todos[i].title %>
 				</a>
-				<a href="#" class="list-group-item">
-					<span class="badge">23:33</span>
-					수강신청
-				</a>
-				<a href="#" class="list-group-item">
-					<span class="badge">23:33</span>
-					컴퓨터 과학과
-				</a>
-				<a href="#" class="list-group-item">
-					<span class="badge">23:33</span>
-					리우올림픽
-				</a>
-				<a href="#" class="list-group-item">
-					<span class="badge">23:33</span>
-					한마당 축제
-				</a>
+				<% } %>
 			</div>
 			<div class="panel-body text-center"><a href="#">더보기</a></div>
 		</div>
@@ -117,7 +108,7 @@ function initMap() {
 		center: myLatLng,
 		zoom: 12,
 		scrollwheel:false,
-		mapTypeId:google.maps.MapTypeId.ROADMAP		
+		mapTypeId:google.maps.MapTypeId.ROADMAP
 	});
 	var marker = new google.maps.Marker({
 		map: map,

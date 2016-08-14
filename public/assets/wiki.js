@@ -5,15 +5,22 @@
 // } else {
 //   ipAddr = req.connection.remoteAddress;
 // }
-var dt = new Date();
+var editedTime = new Date();
 
 $(document).ready(function(){
   $('#contentsform').on('submit', function(){
       var item = CKEDITOR.instances['editor1'].getData();
       var title = $('#title').val();
-      var date = dt;
+      var date = editedTime;
+      var order = editedTime.getTime();
+      var displayTime = editedTime.toLocaleString()
 
-      var wikidata = {title: title, item: item, date: date};
+      var wikidata = {title: title,
+        item: item,
+        editedTime: date,
+        displayTime: displayTime,
+        timeOrderBy: order
+      };
 
       $.ajax({
         type: 'POST',
@@ -34,9 +41,16 @@ $(document).ready(function(){
   $('#contentsform2').on('submit', function(){
       var item = CKEDITOR.instances['editor1'].getData();
       var title = $('#title').val();
-      var date = dt;
+      var date = editedTime;
+      var order = editedTime.getTime();
+      var displayTime = editedTime.toLocaleString()
 
-      var wikidata = {title: title, item: item, date: date};
+      var wikidata = {title: title,
+        item: item,
+        editedTime: date,
+        displayTime: displayTime,
+        timeOrderBy: order
+      };
 
       $.ajax({
         type: 'POST',

@@ -10,7 +10,11 @@ var wikidataSchema = new mongoose.Schema({
   // writerIP: String,
   title: String,
   item: String,
-  date: String
+  createdTime: String,
+  editedTime: String,
+  displayTime: String,
+
+  timeOrderBy: Number
 });
 
 var wikidata = mongoose.model('wikidata', wikidataSchema);
@@ -30,8 +34,16 @@ module.exports = function(app){
       });
     });
 
+  // app.get('/', function(req, res){
+  //   wikidata.find({}, function(err, data){
+  //     if(err) throw err;
+  //     res.render('pages/index', {todos: data});
+  //   }).sort({date:1});
   app.get('/', function(req, res){
-    res.render('pages/index');
+    wikidata.find({}).sort({timeOrderBy: -1}).exec(function(err, data){
+      if(err) throw err;
+      res.render('pages/index', {todos: data});
+    });
     var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
     console.log(ip);
   });
